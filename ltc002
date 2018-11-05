@@ -1,0 +1,27 @@
+合并两个有序链表
+/*没有确切的算法描述，因为javascript封装了一个排序
+  这是一个很简单的题目，难点是构造js的链表数据结构
+*/
+var mergeTwoLists = function(l1, l2) {
+    var ans=[];//最终要提交的链表
+    while(l1){//将数组初始化为链表
+         ans.push(new ListNode(l1.val));//生成头节点
+         l1=l1.next;        
+    }
+     while(l2){//将数组初始化为链表
+         ans.push(new ListNode(l2.val));//生成头节点
+         l2=l2.next;        
+    }
+    ans.sort(function(a,b){//js内置的排序
+        return a.val-b.val;
+    }
+    );
+    /*确保排序后还是链表*/
+    if(!ans.length){
+        return null;
+    }
+    for(let i=0,len=ans.length;i<len-1;i++){
+        ans[i].next=ans[i+1];
+    }
+    return ans[0];//注意[0],这是提交链表的方式
+};
