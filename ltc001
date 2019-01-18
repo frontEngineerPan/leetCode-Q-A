@@ -23,3 +23,11 @@ for(var i=0 ,l=s.length;i<l;++i){
 }
 return max;
 };
+
+
+
+你可能会问：为什么需要判断map[s[i]]>last?
+这里给出反例:
+map[s[i]]         last           s[i]
+b                 c      d       b
+//虽然b被统计过，但是当前累积字符串cdb不存在重复字符
