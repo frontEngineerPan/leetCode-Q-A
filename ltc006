@@ -1,0 +1,30 @@
+/*在@韩子迟的工作上做出算法阐述
+  变量解释:
+  numRows:行的数目（也是z字图任何一个边的长度）
+  row：当前行
+  i:遍历字符串的标识
+  step：字符顺延的方向，-1代表回退一行，1代表前进一行
+  算法：
+  1.若字符串长度不足以排布到要求的行数或者只要求排布一行，那么只按一行排布
+  2.遍历字符串，每个字符按所在行的行名整合在相应的行数组（按行名标识）中
+  3.若当前行触底/触顶，都更换顺延的方向
+  4.将所有行数组整合到一个数组arr中
+*/
+var convert = function(s, numRows) {
+    if(s.length<numRows || numRows===1){
+      return s;
+    }
+    var arr=[];
+    var step=0;
+    var row=0;
+    for(let i=0;i<s.length;i++){
+        arr[row] = (arr[row] || '') + s[i];
+        if(row===numRows-1){
+           step=-1;
+        }else if(row===0){
+           step=1;
+        }
+        row=row+step;
+    }
+    return arr.join('');  
+};
